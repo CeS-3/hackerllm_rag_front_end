@@ -57,13 +57,7 @@
       </template>
       <template v-slot:system-message-body="{message}"> [System]: {{ message.text }} </template>
     </beautiful-chat>
-  <!-- <TestArea
-      :chosen-color="chosenColor"
-      :colors="colors"
-      :message-styling="messageStyling"
-      :on-message="sendMessage"
-      :on-typing="handleTyping"
-    /> -->
+
   </div>
 
 </template>
@@ -71,12 +65,10 @@
 <script>
 import messageHistory from './components/messageHistory'
 import chatParticipants from './components/chatProfiles'
-// import TestArea from './components/TestArea.vue'
 import availableColors from './components/colors'
 export default {
   name: 'App',
   components: {
-    // TestArea
   },
   data() {
     return {
@@ -103,12 +95,14 @@ export default {
     }
   },
   created() {
-    this.setColor('blue')
+    this.setColor('red')
   },
   mounted() {
     this.messageList.forEach((x) => (x.liked = false))
   },
   methods: {
+    // 这里是由robot发送调用的发送函数
+    // user的发送由chat组件完成
     sendMessage(text) {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
@@ -126,7 +120,20 @@ export default {
     },
     onUserInputSubmit(message){
       message.text
-      //此处调用后端API,将
+      //此处调用后端API,将得到的message传递给API
+      fetch("http://localhost:3000/api/")
+      .then(response => {
+          if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+          this.sendMessage(data.text)
+      })
+      .catch(error => {
+          console.error('There has been a problem with your fetch operation:', error);
+      });
       
     },
     onMessageWasSent(message) {
@@ -185,7 +192,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
   margin-top: 60px;
 }
