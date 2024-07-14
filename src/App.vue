@@ -58,16 +58,18 @@
     </beautiful-chat>
 
   </div>
-
+  <chart></chart>
 </template>
 
 <script>
 import messageHistory from './components/messageHistory'
 import chatParticipants from './components/chatProfiles'
 import availableColors from './components/colors'
+import chart from './components/chart.vue';
 export default {
   name: 'App',
   components: {
+    chart
   },
   data() {
     return {
