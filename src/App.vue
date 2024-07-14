@@ -1,4 +1,17 @@
 <template>
+  <div style="display: flex; flex-direction: column; align-items: left; background-color: white; color: white;">
+    <header style="width: 100%; text-align: center; padding: 20px; font-size: 24px;">hot to be a good hacker</header>
+    <div style="display: flex; width: 100%;">
+      <nav style="width: 200px; background-color: white; padding: 10px;">menu</nav>
+      <main style="flex: 1; padding: 10px;">
+        <BarChart />
+        <LineChart />
+        <PieChart />
+      </main>
+      <SideBar />
+    </div>
+    <DataTicker />
+  </div>
   <div>
     <beautiful-chat
       :always-scroll-to-bottom="alwaysScrollToBottom"
@@ -58,18 +71,27 @@
     </beautiful-chat>
 
   </div>
-  <chart></chart>
+  
 </template>
 
 <script>
 import messageHistory from './components/messageHistory'
 import chatParticipants from './components/chatProfiles'
 import availableColors from './components/colors'
-import chart from './components/chart.vue';
+
+import BarChart from './components/BarChart.vue';
+import LineChart from './components/LineChart.vue';
+import PieChart from './components/PieChart.vue';
+import SideBar from './components/SideBar.vue';
+import DataTicker from './components/DataTicker.vue';
 export default {
   name: 'App',
   components: {
-    chart
+    BarChart,
+    LineChart,
+    PieChart,
+    SideBar,
+    DataTicker
   },
   data() {
     return {
