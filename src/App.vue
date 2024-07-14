@@ -94,7 +94,7 @@ export default {
     }
   },
   created() {
-    this.setColor('red')
+    this.setColor('dark')
   },
   mounted() {
     this.messageList.forEach((x) => (x.liked = false))
@@ -150,13 +150,16 @@ export default {
       // 仅在用户发出信息后进行相关操作
       if (message.author == "me") {
         console.log('Sending message to backend:', message);
-        //api的回应为{text:aaa}即可
+        let request = {
+          question: message.data.text
+        };
+        console.log(request)
         fetch("http://localhost:3000/api", {
           method: 'POST', // 请求方法
           headers: {
             'Content-Type': 'application/json', // 请求头，表示请求体是 JSON 格式
           },
-          body: JSON.stringify(message) // 请求体，将 JavaScript 对象转换为 JSON 字符串
+          body: JSON.stringify(request) // 请求体，将 JavaScript 对象转换为 JSON 字符串
         })
         .then(response => {
           console.log('Response status:', response.status); // 记录响应状态
@@ -169,7 +172,7 @@ export default {
         .then(data => {
           console.log('Response data:', data); // 记录响应数据
           // 将机器人的回复发送出去
-          this.sendSupportMessage(data.text);
+          this.sendSupportMessage(data.response);
         })
         .catch(error => {
           this.sendSystemMessage("Internal Server Error")
