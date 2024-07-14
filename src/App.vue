@@ -9,7 +9,6 @@
       :message-styling="messageStyling"
       :new-messages-count="newMessagesCount"
       :on-message-was-sent="onMessageWasSent"
-      :onUserInputSubmit="onUserInputSubmit"
       :open="openChat"
       :participants="participants"
       :show-close-button="true"
@@ -118,26 +117,37 @@ export default {
       this.showTypingIndicator =
         text.length > 0 ? this.participants[this.participants.length - 1].id : ''
     },
-    onUserInputSubmit(message){
-      message.text
-      //此处调用后端API,将得到的message传递给API
-      fetch("http://localhost:3000/api/")
-      .then(response => {
-          if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-          this.sendMessage(data.text)
-      })
-      .catch(error => {
-          console.error('There has been a problem with your fetch operation:', error);
-      });
-      
-    },
+    //onMessageWasSent就是发送信息的回调函数
     onMessageWasSent(message) {
-      this.messageList = [...this.messageList, Object.assign({}, message, {id: Math.random()})]
+      // 将信息打在公屏上
+      this.messageList = [...this.messageList, Object.assign({}, message, { id: Math.random() })];
+      // 仅在用户发出信息后进行相关操作
+      if (message.author == "me") {
+        console.log('Sending message to backend:', message);
+        //api的回应为{text:aaa}即可
+        fetch("http://localhost:3000/api", {
+          method: 'POST', // 请求方法
+          headers: {
+            'Content-Type': 'application/json', // 请求头，表示请求体是 JSON 格式
+          },
+          body: JSON.stringify(message) // 请求体，将 JavaScript 对象转换为 JSON 字符串
+        })
+        .then(response => {
+          console.log('Response status:', response.status); // 记录响应状态
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Response data:', data); // 记录响应数据
+          // 将机器人的回复发送出去
+          this.sendMessage(data.text);
+        })
+        .catch(error => {
+          console.error('There has been a problem with your fetch operation:', error);
+        });
+      }
     },
     openChat() {
       this.isChatOpen = true
