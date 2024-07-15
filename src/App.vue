@@ -8,7 +8,6 @@
         <LineChart />
         <PieChart />
       </main>
-      <SideBar />
     </div>
     <DataTicker />
   </div>
@@ -82,16 +81,12 @@ import availableColors from './components/colors'
 import BarChart from './components/BarChart.vue';
 import LineChart from './components/LineChart.vue';
 import PieChart from './components/PieChart.vue';
-import SideBar from './components/SideBar.vue';
-import DataTicker from './components/DataTicker.vue';
 export default {
   name: 'App',
   components: {
     BarChart,
     LineChart,
     PieChart,
-    SideBar,
-    DataTicker
   },
   data() {
     return {
