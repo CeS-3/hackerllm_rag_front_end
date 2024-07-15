@@ -26,8 +26,8 @@
       :participants="participants"
       :show-close-button="true"
       :show-launcher="true"
-      :show-emoji="true"
-      :show-file="true"
+      :show-emoji="false"
+      :show-file="false"
       :show-typing-indicator="showTypingIndicator"
       :show-edition="true"
       :show-deletion="true"
@@ -118,7 +118,7 @@ export default {
     }
   },
   created() {
-    this.setColor('red')
+    this.setColor('dark')
   },
   mounted() {
     this.messageList.forEach((x) => (x.liked = false))
@@ -126,7 +126,7 @@ export default {
   methods: {
     // 这里是由robot发送调用的发送函数
     // user的发送由chat组件完成
-    sendMessage(text) {
+    sendSupportMessage(text) {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
         this.onMessageWasSent({
@@ -135,6 +135,32 @@ export default {
           id: Math.random(),
           data: {text}
         })
+      }
+    },
+    sendSystemMessage(text) {
+      if (typeof text === 'string' && text.length > 0) {
+        this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1;
+
+        // 获取当前时间
+        const date = new Date();
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从0开始，所以要加1
+        const year = date.getFullYear();
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+
+        // 组合成所需格式
+        const formattedDate = `${month}-${day}-${year} ${hours}:${minutes}`;
+
+        // 发送信息
+        this.onMessageWasSent({
+          type: 'system',
+          id: Math.random(), // 这里可以考虑使用更可靠的唯一 ID 生成方法
+          data: {
+            text: text,
+            meta: formattedDate
+          }
+        });
       }
     },
     handleTyping(text) {
@@ -148,17 +174,21 @@ export default {
       // 仅在用户发出信息后进行相关操作
       if (message.author == "me") {
         console.log('Sending message to backend:', message);
-        //api的回应为{text:aaa}即可
+        let request = {
+          question: message.data.text
+        };
+        console.log(request)
         fetch("http://localhost:3000/api", {
           method: 'POST', // 请求方法
           headers: {
             'Content-Type': 'application/json', // 请求头，表示请求体是 JSON 格式
           },
-          body: JSON.stringify(message) // 请求体，将 JavaScript 对象转换为 JSON 字符串
+          body: JSON.stringify(request) // 请求体，将 JavaScript 对象转换为 JSON 字符串
         })
         .then(response => {
           console.log('Response status:', response.status); // 记录响应状态
           if (!response.ok) {
+            this.sendSystemMessage("Internal Server Error")
             throw new Error('Network response was not ok');
           }
           return response.json();
@@ -166,9 +196,10 @@ export default {
         .then(data => {
           console.log('Response data:', data); // 记录响应数据
           // 将机器人的回复发送出去
-          this.sendMessage(data.text);
+          this.sendSupportMessage(data.response);
         })
         .catch(error => {
+          this.sendSystemMessage("Internal Server Error")
           console.error('There has been a problem with your fetch operation:', error);
         });
       }
