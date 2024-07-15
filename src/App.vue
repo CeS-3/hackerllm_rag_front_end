@@ -1,4 +1,9 @@
 <template>
+  <v-app>
+    <v-main>
+      <HelloWorld/>
+    </v-main>
+  </v-app>
   <div style="display: flex; flex-direction: column; align-items: left; background-color: white; color: white;">
     <header style="width: 100%; text-align: center; padding: 20px; font-size: 24px;">hot to be a good hacker</header>
     <div style="display: flex; width: 100%;">
@@ -74,6 +79,7 @@
 </template>
 
 <script>
+import HelloWorld from './components/HelloWorld.vue'
 import messageHistory from './components/messageHistory'
 import chatParticipants from './components/chatProfiles'
 import availableColors from './components/colors'
@@ -84,6 +90,7 @@ import PieChart from './components/PieChart.vue';
 export default {
   name: 'App',
   components: {
+    HelloWorld,
     BarChart,
     LineChart,
     PieChart,
