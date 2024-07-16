@@ -1,5 +1,5 @@
 <template>
-    <v-main class="main pa-0">
+    <v-main class="main" >
       <v-row no-gutters>
         <div class="spacer"></div>
         <v-col col="1" class="d-flex justify-start">
@@ -10,45 +10,42 @@
         </v-col>
       </v-row>
     </v-main>
-    <v-tabs v-model="tab" background-color="primary" dark class="pa-0 ma-0">
-      <v-tab>Tab 1</v-tab>
-      <v-tab>Tab 2</v-tab>
-      <v-tab>Tab 3</v-tab>
-    </v-tabs>
-  
-    <!-- Tabs Items -->
-    <v-tabs-items v-model="tab">
-      <v-tab-item>
-        <v-card flat>
-          <v-card-text>This is the content for Tab 1</v-card-text>
-        </v-card>
-      </v-tab-item>
-      <v-tab-item>
-        <v-card flat>
-          <v-card-text>This is the content for Tab 2</v-card-text>
-        </v-card>
-      </v-tab-item>
-      <v-tab-item>
-        <v-card flat>
-          <v-card-text>This is the content for Tab 3</v-card-text>
-        </v-card>
-      </v-tab-item>
-    </v-tabs-items>
-  </template>
-  
-  <script>
+    <v-main style="margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0;">
+        <v-row>
+            <div class="spacer"></div>
+        <v-col>
+            <h1 class="articleTitle">Introduction</h1>
+            <h2 class="articleSubTitle">What this project does</h2>
+            <v-divider></v-divider>
+                <v-row>
+                <v-col cols="14" md="4">
+                </v-col>
+                <v-col cols="12" md="4">
+                    <v-icon large class="article">mdi-account</v-icon>
+                    <span class="article">Group Member</span>
+                </v-col>
+                </v-row>
+                <p class="article">
+                We strive to provide the best service possible with every contact. Our team is dedicated to making sure you have the best experience with our services.
+                </p>
+                <v-btn color="primary">Learn More</v-btn>
+                <v-btn color="secondary">Contact Us</v-btn>
+        </v-col>
+        </v-row>
+    </v-main>
+</template>
+<script>
   export default {
     name: 'HeaderA',
     data() {
       return {
-        tab: 0,
         bg: require('@/assets/bg.jpg'), // 使用 require 加载静态资源
       };
     }
   };
-  </script>
+</script>
   
-  <style>
+<style>
   .main {
     width: 100vw;
     height: 950px;
@@ -74,5 +71,25 @@
   .spacer {
     width: 7%;
   }
-  </style>
+  .article{
+    font-family: Arial, sans-serif;
+    font-size: 2em;
+    line-height: 1.5;
+    color: white;
+  }
+  .articleTitle{
+    font-family: Arial, sans-serif;
+    font-size: 5em;
+    font-weight: bold;
+    line-height: 1.5;
+    color: white;
+    text-decoration: underline
+  }
+  .articleSubTitle{
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    line-height: 1.0;
+    color: white;
+  }
+</style>
   
