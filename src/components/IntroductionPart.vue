@@ -14,31 +14,45 @@
         <v-row>
             <div class="spacer"></div>
         <v-col>
-            <h1 class="articleTitle">Introduction</h1>
-            <h2 class="articleSubTitle">What this project does</h2>
+            <span class="articleTitle">Introduction</span><br>
+            <span class="articleSubTitle">What this project does</span>
             <v-divider></v-divider>
                 <v-row>
-                <v-col cols="14" md="4">
-                </v-col>
-                <v-col cols="12" md="4">
-                    <v-icon large class="article">mdi-account</v-icon>
-                    <span class="article">Group Member</span>
+                <v-col cols="12" md="4" offset="10">
+                    <v-btn color="#b1ed4a" @click="dialog = true">
+                    <v-icon>mdi-account</v-icon>
+                    <span>Group Member</span>
+                    </v-btn>
                 </v-col>
                 </v-row>
                 <p class="article">
                 We strive to provide the best service possible with every contact. Our team is dedicated to making sure you have the best experience with our services.
                 </p>
+                <div style="height: 50px;"></div>
                 <v-btn color="primary">Learn More</v-btn>
                 <v-btn color="secondary" href="mailto:1540962271@qq.com">Contact Us</v-btn>
         </v-col>
         </v-row>
     </v-main>
+    <v-dialog v-model="dialog" max-width="500">
+        <v-card>
+        <v-card-title class="headline">Dialog Title</v-card-title>
+        <v-card-text>
+            This is some text within the dialog.
+        </v-card-text>
+        <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" text @click="dialog = false">Close</v-btn>
+        </v-card-actions>
+        </v-card>
+    </v-dialog>
 </template>
 <script>
   export default {
     name: 'HeaderA',
     data() {
       return {
+        dialog : false
       };
     }
   };
@@ -72,7 +86,7 @@
   }
   .article{
     font-family: Arial, sans-serif;
-    font-size: 2em;
+    font-size: 1.75em;
     line-height: 1.5;
     color: white;
   }
@@ -86,9 +100,10 @@
   }
   .articleSubTitle{
     font-family: Arial, sans-serif;
-    font-size: 1em;
+    font-size: 1.75em;
     line-height: 1.0;
-    color: white;
+    color: rgb(156, 147, 147);
   }
+
 </style>
   
