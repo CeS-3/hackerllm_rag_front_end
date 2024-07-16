@@ -4,6 +4,7 @@
       v-model="localDrawer"
       :mini-variant="miniVariant"
       @update:mini-variant="$emit('update:miniVariant', $event)"
+      class="custom-drawer"
     >
       <v-list dense>
         <v-list-item link>
@@ -66,5 +67,9 @@
   </script>
   
   <style scoped>
+  .custom-drawer {
+    background-color: #303d4e; /* 设置背景颜色为绿色 */
+    color: #98a5a6; /* 设置文本颜色为白色 */
+  }
   </style>
   

@@ -3,7 +3,7 @@
     
     <HeaderA @toggle-drawer="drawer = !drawer" />
     <AppSidebar v-model:drawer="drawer" v-model:mini-variant="miniVariant" />
-
+    <IntroductionPart></IntroductionPart>
     <v-main>
         <v-container fluid>
         <v-row>
@@ -105,7 +105,7 @@ import AppSidebar from './components/AppSidebar.vue'
 import messageHistory from './components/messageHistory'
 import chatParticipants from './components/chatProfiles'
 import availableColors from './components/colors'
-
+import IntroductionPart from './components/IntroductionPart.vue'
 
 import BarChart from './components/BarChart.vue';
 import LineChart from './components/LineChart.vue';
@@ -117,7 +117,8 @@ export default {
     LineChart,
     PieChart,
     HeaderA,
-    AppSidebar
+    AppSidebar,
+    IntroductionPart
   },
   data() {
     return {
