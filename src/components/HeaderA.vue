@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app color="#b1ed4a" dark :height="80">
     <v-app-bar-nav-icon @click.stop="toggleDrawer"></v-app-bar-nav-icon>
-    <img :src="logo" alt="Logo" class="logo">
+    <img src="https://www.logosc.cn/oss/icons/2023/01/08/f67e3e299acfd8e8a90d456f994f5eb0.png" alt="Logo" class="logo">
     <v-toolbar-title>
       We <span class="bold-text">Hack</span> the <span class="bold-text">Site</span>
     </v-toolbar-title>
@@ -17,7 +17,7 @@
     <div class="spacer"></div>
     <!-- 将图片包装在 v-btn 中实现点击跳转 -->
     <v-btn icon href="https://github.com/CeS-3/hackerllm_rag_front_end" target="_blank">
-      <img :src="github" alt="Github" class="gitlog">
+      <img src="https://pngimg.com/uploads/github/github_PNG40.png" alt="Github" class="gitlog">
     </v-btn>
   </v-app-bar>
 </template>
@@ -27,8 +27,6 @@ export default {
   name: 'HeaderA',
   data() {
     return {
-      logo: require('@/assets/logo.png'), // 使用 require 加载静态资源
-      github: require('@/assets/github.png')
     };
   },
   methods: {
