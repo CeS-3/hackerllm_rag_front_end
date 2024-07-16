@@ -1,19 +1,34 @@
 <template>
-  <v-app >
+  <v-app class="custom-app-background">
+    
     <HeaderA @toggle-drawer="drawer = !drawer" />
+    <AppSidebar v-model:drawer="drawer" v-model:mini-variant="miniVariant" />
+
     <v-main>
         <v-container fluid>
         <v-row>
-          <v-col cols="12">
+          <v-col cols="1">
+          </v-col>
+          <v-col cols="4">
             <BarChart />
           </v-col>
-          <v-col cols="12">
+          <v-col cols="4">
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="1">
+          </v-col>        
+          <v-col cols="4">
             <LineChart />
           </v-col>
-          <v-col cols="12" md="3">
+        </v-row>
+        <v-row>
+          <v-col cols="1">
+          </v-col>  
+          <v-col cols="4" md="3">
             <PieChart />
           </v-col>
-          <v-col cols="12" md="9">
+          <v-col cols="4" md="9">
           </v-col>
         </v-row>
         <div>
@@ -86,9 +101,11 @@
 
 <script>
 import HeaderA from './components/HeaderA.vue';
+import AppSidebar from './components/AppSidebar.vue'
 import messageHistory from './components/messageHistory'
 import chatParticipants from './components/chatProfiles'
 import availableColors from './components/colors'
+
 
 import BarChart from './components/BarChart.vue';
 import LineChart from './components/LineChart.vue';
@@ -100,6 +117,7 @@ export default {
     LineChart,
     PieChart,
     HeaderA,
+    AppSidebar
   },
   data() {
     return {
@@ -114,7 +132,8 @@ export default {
       chosenColor: null,
       alwaysScrollToBottom: true,
       messageStyling: true,
-      userIsTyping: false
+      userIsTyping: false,
+      drawer: false
     }
   },
   computed: {
@@ -270,4 +289,7 @@ export default {
   margin-top: 60px;
 }
 @import '~vuetify/dist/vuetify.min.css';
+.custom-app-background {
+  background-color: #0c121e; /* 你想要的背景颜色 */
+}
 </style>
