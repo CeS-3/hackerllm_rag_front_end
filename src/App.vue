@@ -1,83 +1,86 @@
 <template>
-  <v-app>
+  <v-app >
     <HeaderA @toggle-drawer="drawer = !drawer" />
-    <v-navigation-drawer v-model="drawer" app>
-      <!-- 这里放置导航抽屉内容 -->
-    </v-navigation-drawer>
     <v-main>
-      <div style="display: flex; flex-direction: column; align-items: left; background-color: white; color: white;">
-    <header style="width: 100%; text-align: center; padding: 20px; font-size: 24px;">hot to be a good hacker</header>
-    <div style="display: flex; width: 100%;">
-      <nav style="width: 200px; background-color: white; padding: 10px;">menu</nav>
-      <main style="flex: 1; padding: 10px;">
-        <BarChart />
-        <LineChart />
-        <PieChart />
-      </main>
+        <v-container fluid>
+        <v-row>
+          <v-col cols="12">
+            <BarChart />
+          </v-col>
+          <v-col cols="12">
+            <LineChart />
+          </v-col>
+          <v-col cols="12" md="3">
+            <PieChart />
+          </v-col>
+          <v-col cols="12" md="9">
+          </v-col>
+        </v-row>
+        <div>
+      <beautiful-chat
+        :always-scroll-to-bottom="alwaysScrollToBottom"
+        :close="closeChat"
+        :colors="colors"
+        :is-open="isChatOpen"
+        :message-list="messageList"
+        :message-styling="messageStyling"
+        :new-messages-count="newMessagesCount"
+        :on-message-was-sent="onMessageWasSent"
+        :open="openChat"
+        :participants="participants"
+        :show-close-button="true"
+        :show-launcher="true"
+        :show-emoji="false"
+        :show-file="false"
+        :show-typing-indicator="showTypingIndicator"
+        :show-edition="true"
+        :show-deletion="true"
+        :show-confirmation-deletion="true"
+        :confirmation-deletion-message="'Are you sure? (you can customize this message)'"
+        :title-image-url="titleImageUrl"
+        :disable-user-list-toggle="false"
+        @onType="handleOnType"
+        @edit="editMessage"
+        @remove="removeMessage"
+      >
+        <template v-slot:header>
+          chat between {{ participants.map((m) => m.name).join(' & ') }}
+        </template>
+        <template v-slot:text-message-toolbox="scopedProps">
+          <button
+            v-if="!scopedProps.me && scopedProps.message.type === 'text'"
+            @click.prevent="like(scopedProps.message.id)"
+          >
+            👍
+          </button>
+        </template>
+        <template v-slot:text-message-body="scopedProps">
+          <p class="sc-message--text-content" v-html="scopedProps.messageText"></p>
+          <p
+            v-if="scopedProps.message.data.meta"
+            class="sc-message--meta"
+            :style="{color: scopedProps.messageColors.color}"
+          >
+            {{ scopedProps.message.data.meta }}
+          </p>
+          <p
+            v-if="scopedProps.message.isEdited || scopedProps.message.liked"
+            class="sc-message--edited"
+          >
+            <template v-if="scopedProps.message.isEdited">✎</template>
+            <template v-if="scopedProps.message.liked">👍</template>
+          </p>
+        </template>
+        <template v-slot:system-message-body="{message}"> [System]: {{ message.text }} </template>
+      </beautiful-chat>
     </div>
-    <DataTicker />
-  </div>
-    </v-main>
-  </v-app>
-  <div>
-    <beautiful-chat
-      :always-scroll-to-bottom="alwaysScrollToBottom"
-      :close="closeChat"
-      :colors="colors"
-      :is-open="isChatOpen"
-      :message-list="messageList"
-      :message-styling="messageStyling"
-      :new-messages-count="newMessagesCount"
-      :on-message-was-sent="onMessageWasSent"
-      :open="openChat"
-      :participants="participants"
-      :show-close-button="true"
-      :show-launcher="true"
-      :show-emoji="false"
-      :show-file="false"
-      :show-typing-indicator="showTypingIndicator"
-      :show-edition="true"
-      :show-deletion="true"
-      :show-confirmation-deletion="true"
-      :confirmation-deletion-message="'Are you sure? (you can customize this message)'"
-      :title-image-url="titleImageUrl"
-      :disable-user-list-toggle="false"
-      @onType="handleOnType"
-      @edit="editMessage"
-      @remove="removeMessage"
-    >
-      <template v-slot:header>
-        chat between {{ participants.map((m) => m.name).join(' & ') }}
-      </template>
-      <template v-slot:text-message-toolbox="scopedProps">
-        <button
-          v-if="!scopedProps.me && scopedProps.message.type === 'text'"
-          @click.prevent="like(scopedProps.message.id)"
-        >
-          👍
-        </button>
-      </template>
-      <template v-slot:text-message-body="scopedProps">
-        <p class="sc-message--text-content" v-html="scopedProps.messageText"></p>
-        <p
-          v-if="scopedProps.message.data.meta"
-          class="sc-message--meta"
-          :style="{color: scopedProps.messageColors.color}"
-        >
-          {{ scopedProps.message.data.meta }}
-        </p>
-        <p
-          v-if="scopedProps.message.isEdited || scopedProps.message.liked"
-          class="sc-message--edited"
-        >
-          <template v-if="scopedProps.message.isEdited">✎</template>
-          <template v-if="scopedProps.message.liked">👍</template>
-        </p>
-      </template>
-      <template v-slot:system-message-body="{message}"> [System]: {{ message.text }} </template>
-    </beautiful-chat>
+      </v-container>
 
-  </div>
+    </v-main>
+
+
+  </v-app>
+
   
 </template>
 
