@@ -3,7 +3,7 @@
   </template>
   
   <script>
-  import * as echarts from 'echarts';
+import * as echarts from 'echarts';
   
   export default {
     name: 'ScatterChart',
@@ -14,11 +14,15 @@
       },
       xAxisLabel: {
         type: String,
-        default: 'X Axis'
+        default: 'Ranking'
       },
       yAxisLabel: {
         type: String,
-        default: 'Y Axis'
+        default: 'Team Ranking'
+      },
+      title: {
+        type: String,
+        default: ''
       }
     },
     mounted() {
@@ -30,12 +34,12 @@
   
         var option = {
           title: {
-            text: 'Scatter Chart Example'
+            text: this.title,
           },
           tooltip: {
             trigger: 'item',
             formatter: function (params) {
-              return 'X: ' + params.value[0] + '<br>Y: ' + params.value[1];
+              return 'Ranking: ' + params.value[0] + '<br>Team Ranking: ' + params.value[1];
             }
           },
           xAxis: {

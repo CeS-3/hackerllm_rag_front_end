@@ -1,5 +1,5 @@
 <template>
-    <div ref="chart" style="width: 100%; height: 400px;"></div>
+    <div ref="chart" style="width: 35%; height: 400px;"></div>
   </template>
   
   <script>
@@ -36,27 +36,27 @@
               formatter: function(value) {
                 return value;
               },
-              color: '#666'
+              color: 'rgb(156, 147, 147)'
             },
             splitLine: {
               lineStyle: {
                 color: [
-                  'rgba(0, 0, 0, 0.1)',
-                  'rgba(0, 0, 0, 0.2)',
-                  'rgba(0, 0, 0, 0.3)',
-                  'rgba(0, 0, 0, 0.4)',
-                  'rgba(0, 0, 0, 0.5)'
+                  '#373f4e',
+                  '#373f4e',
+                  '#373f4e',
+                  '#373f4e',
+                  '#373f4e'
                 ].reverse()
               }
             },
             splitArea: {
               areaStyle: {
-                color: ['rgba(0, 0, 0, 0.05)', 'rgba(0, 0, 0, 0.02)'].reverse()
+                color: ['#1d2532', '#161d2a'].reverse()
               }
             },
             axisLine: {
               lineStyle: {
-                color: 'rgba(0, 0, 0, 0.5)'
+                color: '#373f4e'
               }
             }
           },
@@ -67,10 +67,10 @@
               value: this.data,
               name: 'Data',
               areaStyle: {
-                color: 'rgba(0, 255, 0, 0.5)'
+                color: '#3e5137'
               },
               lineStyle: {
-                color: 'rgba(0, 255, 0, 1)'
+                color: '#b1ed4a'
               }
             }]
           }]

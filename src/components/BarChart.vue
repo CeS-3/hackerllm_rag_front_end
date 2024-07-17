@@ -19,6 +19,10 @@ export default {
     title: {
       type: String,
     },
+    value: {
+      type: String,
+      default: "Mean Value",
+    },
     xAxisLabel: {
       type: String,
     },
@@ -51,25 +55,36 @@ export default {
             rotate: 45, // 增加旋转角度
             margin: 10, // 增加标签与轴线的间距
             textStyle: {
-              fontSize: 10, // 调整字体大小
+              fontSize: 15, // 调整字体大小
+              color: "rgb(156, 147, 147)",
+            }
+          },
+          splitLine: {
+            lineStyle: {
+              color: 'rgba(255, 255, 255, 0.1)' // 设置背景线条的颜色
             }
           }
         },
         yAxis: {
           type: 'value',
-          name: this.yAxisLabel
+          name: this.yAxisLabel,
+          splitLine: {
+            lineStyle: {
+              color: 'rgba(255, 255, 255, 0.1)' // 设置背景线条的颜色
+            }
+          }
         },
         series: [{
-          name: 'Value',
+          name: this.value,
           type: 'bar',
           data: this.data,
           itemStyle: {
-            color: 'white'
+            color: '#b1ed4a'
           },
           label: {
             show: true,
             position: 'top',
-            color: '#7CFC00'
+            color: 'rgb(156, 147, 147)'
           }
         }]
       };

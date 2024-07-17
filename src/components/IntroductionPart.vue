@@ -36,9 +36,20 @@
   </v-main>
   <v-dialog v-model="localDialog" class="custom-dialog">
     <v-card class="custom-card">
-      <v-card-title class="headline">Group Member Introduction</v-card-title>
-      <v-card-text>
-        This is some text within the dialog.
+      <v-card-title class="dialog-headline"><span style="font-weight: bold;">Group Member Introduction</span></v-card-title>
+      <v-card-text style="color: black;">
+        <h3>Group Member</h3>
+        LI LANZHE<br>
+        HUANG YUHAO<br>
+        HUANG JIAXI<br>
+        ZHU ZIYI<br>
+        WANG YUYU<br>
+        <br>
+        <h3>Work Allocation</h3>
+        <span class ="work-allocation">Data Collection</span> HUANG YUHAO, HUANG JIAXI<br>
+        <span class ="work-allocation">Data Analysis and Evaluation</span>: ZHU ZIYI, WANGYUYU, LI LIANZHE<br>
+        <span class ="work-allocation">Model Train and Deploy</span>: HUANG JIAXI, LI LIANZHE<br>
+        <span class ="work-allocation">Website Development</span>:HUANG JIAXI, HUANG YUHAO<br>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -128,9 +139,15 @@ export default {
   color: rgb(156, 147, 147);
 }
 .custom-dialog {
-  max-width: 900px;
+  max-width: 700px;
 }
 .custom-card {
-  height: 600px; /* 设置对话框的高度 */
+  height: 450px; /* 设置对话框的高度 */
+}
+.dialog-headline {
+  background-color: #b1ed4a;
+}
+.work-allocation {
+  font-weight: bold;
 }
 </style>

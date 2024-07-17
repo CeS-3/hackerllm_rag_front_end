@@ -19,11 +19,11 @@
         <ConfusionMatrix :data="ChallengeMatrixData" :categories="ChallengeMatrixCategories" />
         <ConfusionMatrix :data="SherlockMatrixData" :categories="SherlockMatrixCategories" />
         
-        <BarChart :categories="MachineBarCategories" :data="MachineBarChartData" />
-        <BarChart :categories="MachineMeanBarCategories" :data="MachineMeanBarChartData" />
-        <BarChart :categories="ChallengeBarCategories" :data="ChallengeBarChartData" />
-        <BarChart :categories="SherlockMeanBarCategories" :data="SherlockMeanBarChartData" />
-        <BarChart :categories="SystemBarCategories" :data="SystemBarChartData" />
+        <BarChart :categories="MachineBarCategories" :data="MachineBarChartData" :title="MachineAttackPaths" />
+        <BarChart :categories="MachineMeanBarCategories" :data="MachineMeanBarChartData" :title="MachineAttackPaths" />
+        <BarChart :categories="ChallengeBarCategories" :data="ChallengeBarChartData" :title="ChallengeCategories"/>
+        <BarChart :categories="SherlockMeanBarCategories" :data="SherlockMeanBarChartData" :title="SherlockCategories"/>
+        <BarChart :categories="SystemBarCategories" :data="SystemBarChartData" :title="SystemCategories"/>
         
         <RadarChart :indicator="MachineRadarIndicator" :data="MachineRadarData" />
         <RadarChart :indicator="ChallengeRadarIndicator" :data="ChallengeRadarData" />
@@ -76,6 +76,11 @@ export default {
       ],
       SherlockMatrixCategories: ['DFIR', 'Cloud', 'Malware Analysis', 'SOC', 'Threat Intelligence', 'Campaign'],
       
+      MachineAttackPaths: "Machine Attack Paths",
+      ChallengeCategories: "Challenge Categories",
+      SherlockCategories: "Sherlock Categories",
+      SystemCategories: "System Categories",
+
       //machine板块柱状图
       MachineBarCategories: ['Reconnaissance', 'Password Reuse', 'Password Cracking', 'Injections', 'Software & OS exploitation', 'Common Applications', 'Web Site Structure Discovery', 'Security Tools', 'Source Code Analysis', 'SUDO Exploitation', 'Authentication', 'Databases', 'Custom Applications', 'Configuration and Authorization', 'Protocols', 'Broken Authentication and Authorization', 'Fuzzing', 'User Enumeration', 'Active Directory', 'Reverse Engineering'],
       MachineBarChartData: [778.37, 759.59, 748.97, 745.81, 707.69, 700.23, 672.15, 422.61, 374.41, 327.21, 323.61, 297.85, 220.55, 142.28, 95.58, 89.88, 85.97, 79.15, 47.87, 36.32],

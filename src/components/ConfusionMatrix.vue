@@ -28,7 +28,7 @@
           tooltip: {
             position: 'top',
             formatter: function (params) {
-              return `真实类别: ${params.value[1]}<br>预测类别: ${params.value[0]}<br>数量: ${params.value[2]}`;
+              return `fact: ${params.value[1]}<br>predict: ${params.value[0]}<br>sum: ${params.value[2]}`;
             }
           },
           grid: {
