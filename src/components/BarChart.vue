@@ -1,5 +1,5 @@
 <template>
-  <div id="barChart" style="width: 600px; height: 400px;"></div>
+  <div ref="barChart" style="width: 600px; height: 400px;"></div>
 </template>
 
 <script>
@@ -7,28 +7,53 @@ import * as echarts from 'echarts';
 
 export default {
   name: 'BarChart',
+  props: {
+    categories: {
+      type: Array,
+      required: true
+    },
+    data: {
+      type: Array,
+      required: true
+    },
+    title: {
+      type: String,
+    }
+  },
   mounted() {
-    var myChart = echarts.init(document.getElementById('barChart'));
+    this.drawChart();
+  },
+  methods: {
+    drawChart() {
+      var myChart = echarts.init(this.$refs.barChart);
 
-    var option = {
-      title: {
-        text: '柱状图示例'
-      },
-      tooltip: {},
-      xAxis: {
-        data: ['类别1', '类别2', '类别3', '类别4', '类别5']
-      },
-      yAxis: {},
-      series: [
-        {
-          name: '数据',
-          type: 'bar',
-          data: [5, 20, 36, 10, 10]
-        }
-      ]
-    };
+      var option = {
+        title: {
+          text: this.title
+        },
+        tooltip: {},
+        xAxis: {
+          data: this.categories
+        },
+        yAxis: {},
+        series: [
+          {
+            name: '数据',
+            type: 'bar',
+            data: this.data
+          }
+        ]
+      };
 
-    myChart.setOption(option);
+      myChart.setOption(option);
+    }
+  },
+  watch: {
+    categories: 'drawChart',
+    data: 'drawChart'
   }
 };
 </script>
+
+<style scoped>
+</style>
