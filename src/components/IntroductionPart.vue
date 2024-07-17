@@ -34,9 +34,9 @@
         </v-col>
         </v-row>
     </v-main>
-    <v-dialog v-model="dialog" max-width="500">
-        <v-card>
-        <v-card-title class="headline">Dialog Title</v-card-title>
+    <v-dialog v-model="dialog" class="custom-dialog">
+        <v-card class="custom-card">
+        <v-card-title class="headline">Group Member Introduction</v-card-title>
         <v-card-text>
             This is some text within the dialog.
         </v-card-text>
@@ -104,6 +104,11 @@
     line-height: 1.0;
     color: rgb(156, 147, 147);
   }
-
+  .custom-dialog{
+    max-width: 900px;
+  }
+  .custom-card {
+    height: 600px; /* 设置对话框的高度 */
+  }
 </style>
   
