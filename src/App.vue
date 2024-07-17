@@ -6,31 +6,7 @@
     <IntroductionPart></IntroductionPart>
     <v-main>
         <v-container fluid>
-        <v-row>
-          <v-col cols="1">
-          </v-col>
-          <v-col cols="4">
-            <BarChart />
-          </v-col>
-          <v-col cols="4">
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="1">
-          </v-col>        
-          <v-col cols="4">
-            <LineChart />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="1">
-          </v-col>  
-          <v-col cols="4" md="3">
-            <PieChart />
-          </v-col>
-          <v-col cols="4" md="9">
-          </v-col>
-        </v-row>
+          <GraphDisplayArea></GraphDisplayArea>
         <div>
       <beautiful-chat
         :always-scroll-to-bottom="alwaysScrollToBottom"
@@ -106,19 +82,14 @@ import messageHistory from './components/messageHistory'
 import chatParticipants from './components/chatProfiles'
 import availableColors from './components/colors'
 import IntroductionPart from './components/IntroductionPart.vue'
-
-import BarChart from './components/BarChart.vue';
-import LineChart from './components/LineChart.vue';
-import PieChart from './components/PieChart.vue';
+import GraphDisplayArea from './components/GraphDisplayArea.vue'
 export default {
   name: 'App',
   components: {
-    BarChart,
-    LineChart,
-    PieChart,
     HeaderA,
     AppSidebar,
-    IntroductionPart
+    IntroductionPart,
+    GraphDisplayArea
   },
   data() {
     return {
