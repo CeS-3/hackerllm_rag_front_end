@@ -262,6 +262,6 @@ export default {
 }
 @import '~vuetify/dist/vuetify.min.css';
 .custom-app-background {
-  background-color: #0c121e; /* 你想要的背景颜色 */
+  background-color: #161c2a; /* 你想要的背景颜色 */
 }
 </style>
