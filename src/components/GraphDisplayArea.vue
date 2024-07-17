@@ -1,34 +1,217 @@
 <template>
     <v-main style="margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0;">
         <v-row>
-            <div class="spacer"></div>
-        <v-col>
-            <span class="articleTitle">Data Analysis</span><br>
-            <span class="articleSubTitle">What we have got</span>
-            <v-divider></v-divider>
-                <v-row>
-                <v-col cols="12" md="4" offset="10">
-                    <div style="height: 1em;"></div>
-                </v-col>
-                </v-row>
-                <p class="article">
-                We strive to provide the best service possible with every contact. Our team is dedicated to making sure you have the best experience with our services.
-                </p>
-        </v-col>
+          <div class="spacer"></div>
+          <v-col>
+              <span class="articleTitle">Data Analysis</span><br>
+              <span class="articleSubTitle">What we have got</span>
+              <v-divider></v-divider>
+                  <v-row>
+                    <v-col cols="12" md="4" offset="10">
+                        <div style="height: 1em;"></div>
+                    </v-col>
+                  </v-row>
+                  <p class="article">
+                  We strive to provide the best service possible with every contact. Our team is dedicated to making sure you have the best experience with our services.
+                  </p>
+          </v-col>
         </v-row>
-        <ConfusionMatrix :data="ChallengeMatrixData" :categories="ChallengeMatrixCategories" />
-        <ConfusionMatrix :data="SherlockMatrixData" :categories="SherlockMatrixCategories" />
-        
-        <BarChart :categories="MachineBarCategories" :data="MachineBarChartData" :title="MachineAttackPaths" />
-        <BarChart :categories="MachineMeanBarCategories" :data="MachineMeanBarChartData" :title="MachineAttackPaths" />
-        <BarChart :categories="ChallengeBarCategories" :data="ChallengeBarChartData" :title="ChallengeCategories"/>
-        <BarChart :categories="SherlockMeanBarCategories" :data="SherlockMeanBarChartData" :title="SherlockCategories"/>
-        <BarChart :categories="SystemBarCategories" :data="SystemBarChartData" :title="SystemCategories"/>
-        
-        <RadarChart :indicator="MachineRadarIndicator" :data="MachineRadarData" />
-        <RadarChart :indicator="ChallengeRadarIndicator" :data="ChallengeRadarData" />
-        <RadarChart :indicator="SherlockRadarIndicator" :data="SherlockRadarData" />
-        <ScatterChart :data="RankScatterData" xAxisLabel="Ranking" yAxisLabel="Team Ranking" />
+        <v-row>
+          <v-col>
+          <div style="height: 100px;"></div>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col offset="1">
+              <span class="second-level-title">Machine Attack Part</span>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="6" offset="1">
+            <BarChart :categories="MachineBarCategories" :data="MachineBarChartData" :title="MachineAttackPaths" />
+          </v-col>
+          <v-col cols="5">
+            <p class="article">
+              <br>待定
+
+            </p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="6" offset="1">
+            <BarChart :categories="MachineMeanBarCategories" :data="MachineMeanBarChartData" :title="MachineAttackPaths" />
+          </v-col>
+          <v-col cols="5">
+            <p class="article">
+                <br>Analysis<br>
+Considering the total frequency (count) of each technique's appearance among the top 800 individuals and the average completion number (mean), a principal component analysis (PCA) was conducted based on count and mean. <br>
+The principal component is derived as 0.707count + 0.707mean, with a cumulative contribution rate reaching 0.91.<br>
+The visualization results sorted in descending order by the principal component are shown in the chart.
+            </p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="6" offset="1">
+            <RadarChart :indicator="MachineRadarIndicator" :data="MachineRadarData" />
+          </v-col>
+          <v-col cols="5">
+            <p class="article">
+                <br>
+                Conclusion<br>
+    The top 7 techniques are recommended for learning:<br>
+    <ol>
+        <li>Reconnaissance</li>
+        <li>Password Reuse</li>
+        <li>Password Cracking</li>
+        <li>Injections</li>
+        <li>Software & OS Exploitation</li>
+        <li>Common Applications</li>
+        <li>Web Site Structure Discovery</li>
+        <li>Security Tools</li>
+    </ol>
+            </p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+          <div style="height: 100px;"></div>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col offset="1">
+              <span class="second-level-title">Challenge Part</span>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="5" offset="1">
+            <BarChart :categories="ChallengeBarCategories" :data="ChallengeBarChartData" :title="ChallengeCategories"/>
+          </v-col>
+          <v-col cols="5">
+            <RadarChart :indicator="ChallengeRadarIndicator" :data="ChallengeRadarData" />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="6" offset="1">
+            <p class="article">
+              <br>this is the analysis
+            </p>
+          </v-col>
+          <v-col cols="5">
+            <p class="article">
+              <br>this is the analysis
+            </p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+          <div style="height: 100px;"></div>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col offset="1">
+              <span class="second-level-title">Sherlock Part</span>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="5" offset="1">
+            <BarChart :categories="SherlockMeanBarCategories" :data="SherlockMeanBarChartData" :title="SherlockCategories"/>
+          </v-col>
+          <v-col cols="5">
+            <RadarChart :indicator="SherlockRadarIndicator" :data="SherlockRadarData" />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="6" offset="1">
+            <p class="article">
+              <br>this is the analysis
+            </p>
+          </v-col>
+          <v-col cols="5">
+            <p class="article">
+              <br>this is the analysis
+            </p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+          <div style="height: 100px;"></div>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col offset="1">
+              <span class="second-level-title">Target Operating System Part</span>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="5" offset="1">
+            <BarChart :categories="SystemBarCategories" :data="SystemBarChartData" :title="SystemCategories"/>
+          </v-col>
+          <v-col cols="5">
+            <p class="article">
+              <br>this is the analysis
+            </p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+          <div style="height: 100px;"></div>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col offset="1">
+              <span class="second-level-title">Challenge Correlation Analysis</span>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <ConfusionMatrix :data="ChallengeMatrixData" :categories="ChallengeMatrixCategories" />
+          </v-col>          
+        </v-row>
+        <v-row>
+          <v-col offset="2">
+            <p class="article">this is the analysis</p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+          <div style="height: 100px;"></div>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col offset="1">
+              <span class="second-level-title">Sherlock Correlation Analysis</span>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <ConfusionMatrix :data="SherlockMatrixData" :categories="SherlockMatrixCategories" />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col offset="2">
+            <p class="article">this is the analysis</p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+          <div style="height: 100px;"></div>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col offset="1">
+              <span class="second-level-title">Rankings Correlation Analysis</span>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <ScatterChart :data="RankScatterData" xAxisLabel="Ranking" yAxisLabel="Team Ranking" />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col offset="2">
+            <p class="article">this is the analysis</p>
+          </v-col>
+        </v-row>
     </v-main>
 </template>
 
@@ -189,5 +372,12 @@ export default {
     font-size: 1.75em;
     line-height: 1.0;
     color: rgb(156, 147, 147);
+  }
+  .second-level-title{
+    font-family: Arial, sans-serif;
+    font-size: 4em;
+    font-style: italic;
+    line-height: 1.5;
+    color: rgb(200, 186, 186);
   }
 </style>

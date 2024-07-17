@@ -64,6 +64,9 @@
             <template v-slot:system-message-body="{message}"> [System]: {{ message.text }} </template>
           </beautiful-chat>
         </div>
+        <v-row>
+          <div style="height: 200px;"></div>
+        </v-row>
       </v-container>
     </v-main>
   </v-app>

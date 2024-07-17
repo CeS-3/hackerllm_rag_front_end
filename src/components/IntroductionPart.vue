@@ -29,8 +29,6 @@
           We strive to provide the best service possible with every contact. Our team is dedicated to making sure you have the best experience with our services.
         </p>
         <div style="height: 50px;"></div>
-        <v-btn color="primary">Learn More</v-btn>
-        <v-btn color="secondary" href="mailto:1540962271@qq.com">Contact Us</v-btn>
       </v-col>
     </v-row>
   </v-main>
