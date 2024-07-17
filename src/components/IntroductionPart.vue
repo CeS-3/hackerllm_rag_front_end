@@ -93,6 +93,15 @@ export default {
 </script>
 
 <style>
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .main {
   width: 100vw;
   height: 950px;
@@ -101,6 +110,7 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
+  animation: fadeIn 3s ease-in-out;
 }
 .title {
   font-family: Arial, sans-serif;
