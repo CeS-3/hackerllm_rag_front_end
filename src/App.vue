@@ -1,78 +1,72 @@
 <template>
   <v-app class="custom-app-background">
-    
     <HeaderA @toggle-drawer="drawer = !drawer" />
-    <AppSidebar v-model:drawer="drawer" v-model:mini-variant="miniVariant" />
-    <IntroductionPart></IntroductionPart>
+    <AppSidebar v-model:drawer="drawer" v-model:mini-variant="miniVariant" @trigger-dialog="handleTriggerDialog" />
+    <IntroductionPart :dialog="dialog" @update:dialog="dialog = $event"></IntroductionPart>
     <v-main>
-        <v-container fluid>
-          <GraphDisplayArea></GraphDisplayArea>
+      <v-container fluid>
+        <GraphDisplayArea></GraphDisplayArea>
         <div>
-      <beautiful-chat
-        :always-scroll-to-bottom="alwaysScrollToBottom"
-        :close="closeChat"
-        :colors="colors"
-        :is-open="isChatOpen"
-        :message-list="messageList"
-        :message-styling="messageStyling"
-        :new-messages-count="newMessagesCount"
-        :on-message-was-sent="onMessageWasSent"
-        :open="openChat"
-        :participants="participants"
-        :show-close-button="true"
-        :show-launcher="true"
-        :show-emoji="false"
-        :show-file="false"
-        :show-typing-indicator="showTypingIndicator"
-        :show-edition="true"
-        :show-deletion="true"
-        :show-confirmation-deletion="true"
-        :confirmation-deletion-message="'Are you sure? (you can customize this message)'"
-        :title-image-url="titleImageUrl"
-        :disable-user-list-toggle="false"
-        @onType="handleOnType"
-        @edit="editMessage"
-        @remove="removeMessage"
-      >
-        <template v-slot:header>
-          chat between {{ participants.map((m) => m.name).join(' & ') }}
-        </template>
-        <template v-slot:text-message-toolbox="scopedProps">
-          <button
-            v-if="!scopedProps.me && scopedProps.message.type === 'text'"
-            @click.prevent="like(scopedProps.message.id)"
+          <beautiful-chat
+            :always-scroll-to-bottom="alwaysScrollToBottom"
+            :close="closeChat"
+            :colors="colors"
+            :is-open="isChatOpen"
+            :message-list="messageList"
+            :message-styling="messageStyling"
+            :new-messages-count="newMessagesCount"
+            :on-message-was-sent="onMessageWasSent"
+            :open="openChat"
+            :participants="participants"
+            :show-close-button="true"
+            :show-launcher="true"
+            :show-emoji="false"
+            :show-file="false"
+            :show-typing-indicator="showTypingIndicator"
+            :show-edition="true"
+            :show-deletion="true"
+            :show-confirmation-deletion="true"
+            :confirmation-deletion-message="'Are you sure? (you can customize this message)'"
+            :title-image-url="titleImageUrl"
+            :disable-user-list-toggle="false"
+            @onType="handleOnType"
+            @edit="editMessage"
+            @remove="removeMessage"
           >
-            👍
-          </button>
-        </template>
-        <template v-slot:text-message-body="scopedProps">
-          <p class="sc-message--text-content" v-html="scopedProps.messageText"></p>
-          <p
-            v-if="scopedProps.message.data.meta"
-            class="sc-message--meta"
-            :style="{color: scopedProps.messageColors.color}"
-          >
-            {{ scopedProps.message.data.meta }}
-          </p>
-          <p
-            v-if="scopedProps.message.isEdited || scopedProps.message.liked"
-            class="sc-message--edited"
-          >
-            <template v-if="scopedProps.message.isEdited">✎</template>
-            <template v-if="scopedProps.message.liked">👍</template>
-          </p>
-        </template>
-        <template v-slot:system-message-body="{message}"> [System]: {{ message.text }} </template>
-      </beautiful-chat>
-    </div>
+            <template v-slot:header>
+              chat between {{ participants.map((m) => m.name).join(' & ') }}
+            </template>
+            <template v-slot:text-message-toolbox="scopedProps">
+              <button
+                v-if="!scopedProps.me && scopedProps.message.type === 'text'"
+                @click.prevent="like(scopedProps.message.id)"
+              >
+                👍
+              </button>
+            </template>
+            <template v-slot:text-message-body="scopedProps">
+              <p class="sc-message--text-content" v-html="scopedProps.messageText"></p>
+              <p
+                v-if="scopedProps.message.data.meta"
+                class="sc-message--meta"
+                :style="{color: scopedProps.messageColors.color}"
+              >
+                {{ scopedProps.message.data.meta }}
+              </p>
+              <p
+                v-if="scopedProps.message.isEdited || scopedProps.message.liked"
+                class="sc-message--edited"
+              >
+                <template v-if="scopedProps.message.isEdited">✎</template>
+                <template v-if="scopedProps.message.liked">👍</template>
+              </p>
+            </template>
+            <template v-slot:system-message-body="{message}"> [System]: {{ message.text }} </template>
+          </beautiful-chat>
+        </div>
       </v-container>
-
     </v-main>
-
-
   </v-app>
-
-  
 </template>
 
 <script>
@@ -83,6 +77,7 @@ import chatParticipants from './components/chatProfiles'
 import availableColors from './components/colors'
 import IntroductionPart from './components/IntroductionPart.vue'
 import GraphDisplayArea from './components/GraphDisplayArea.vue'
+
 export default {
   name: 'App',
   components: {
@@ -105,7 +100,8 @@ export default {
       alwaysScrollToBottom: true,
       messageStyling: true,
       userIsTyping: false,
-      drawer: false
+      drawer: false,
+      dialog: false // 新增的 dialog 状态
     }
   },
   computed: {
@@ -123,8 +119,9 @@ export default {
     this.messageList.forEach((x) => (x.liked = false))
   },
   methods: {
-    // 这里是由robot发送调用的发送函数
-    // user的发送由chat组件完成
+    handleTriggerDialog() {
+      this.dialog = true;
+    },
     sendSupportMessage(text) {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
@@ -166,7 +163,6 @@ export default {
       this.showTypingIndicator =
         text.length > 0 ? this.participants[this.participants.length - 1].id : ''
     },
-    //onMessageWasSent就是发送信息的回调函数
     onMessageWasSent(message) {
       // 将信息打在公屏上
       this.messageList = [...this.messageList, Object.assign({}, message, { id: Math.random() })];
@@ -218,11 +214,6 @@ export default {
       alert(
         'You can use *word* to <strong>boldify</strong>, /word/ to <em>emphasize</em>, _word_ to <u>underline</u>, `code` to <code>write = code;</code>, ~this~ to <del>delete</del> and ^sup^ or ¡sub¡ to write <sup>sup</sup> and <sub>sub</sub>'
       )
-      // this.$modal.show('dialog', {
-      //   title: 'Info',
-      //   text:
-      //     'You can use *word* to <strong>boldify</strong>, /word/ to <em>emphasize</em>, _word_ to <u>underline</u>, `code` to <code>write = code;</code>, ~this~ to <del>delete</del> and ^sup^ or ¡sub¡ to write <sup>sup</sup> and <sub>sub</sub>'
-      // })
     },
     messageStylingToggled(e) {
       this.messageStyling = e.target.checked
@@ -246,7 +237,7 @@ export default {
       var msg = this.messageList[m]
       msg.liked = !msg.liked
       this.messageList[m] = msg
-    }
+    },
   }
 }
 </script>
