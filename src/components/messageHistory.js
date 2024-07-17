@@ -1,28 +1,20 @@
 export default [
   // {type: 'text', author: `me`, id: 0, data: {text: `Why don't they have salsa on the table?`}},
   // {type: 'text', author: `mattmezza`, id: 1, data: {text: `What do you need salsa for?`}},
-  // {
-  //   type: 'text',
-  //   author: `me`,
-  //   id: 2,
-  //   data: {text: `Salsa is now the number one condiment in America.`}
-  // },
-  // {
-  //   type: 'text',
-  //   author: `mattmezza`,
-  //   id: 3,
-  //   data: {
-  //     text: `You know why? Because people like to say 'salsa.' 'Excuse me, do you have salsa?' 'We need more salsa.' 'Where is the salsa? No salsa?'`
-  //   }
-  // },
-  // {
-  //   type: 'text',
-  //   author: `me`,
-  //   id: 4,
-  //   data: {
-  //     text: `You know it must be impossible for a Spanish person to order seltzer and not get salsa. 'I wanted seltzer, not salsa.'`
-  //   }
-  // },
+  {
+    type: 'text',
+    author: `support`,
+    id: 2,
+    data: {text: `I am a hacker mentor.`}
+  },
+  {
+    type: 'text',
+    author: `support`,
+    id: 3,
+    data: {
+      text: `You can ask me about effective methods to become a hacker.`
+    }
+  },
   // {
   //   type: 'text',
   //   author: `mattmezza`,
@@ -97,12 +89,12 @@ export default [
     type: 'text',
     author: `support`,
     id: 21,
-    data: {text: `What about suggestions?`},
+    data: {text: `You can ask me questions like:`},
     suggestions: [
-      'Looks good!',
-      "It's OK.",
-      'Uhh.. Do I really have to say something?',
-      "This suggestion is way too long for css purpose. Let's make it long... Longer, and more and more.. Never ending."
+      'How to become a master of web attacks?',
+      "Can you tell me the trending research areas right now?",
+      'What skills are essential to become an expert hacker?',
+      "Which operating system is currently most favored by hackers?"
     ]
   }
 ]
