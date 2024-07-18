@@ -31,5 +31,13 @@ module.exports = defineConfig({
 
   devServer: {
     port: 8080, // 根据需要修改端口
+  },
+  pages: {
+    index: {
+      entry: 'src/main.js',
+      template: 'public/index.html',
+      filename: 'index.html',
+      title: 'We Hack the Site', // 设置网页标题
+    }
   }
 });
