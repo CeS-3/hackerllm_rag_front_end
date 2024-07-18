@@ -1,10 +1,10 @@
 <template>
   <v-navigation-drawer
-    app
     v-model="localDrawer"
     :mini-variant="miniVariant"
     @update:mini-variant="$emit('update:mini-variant', $event)"
     class="custom-drawer"
+    temporary
   >
     <v-list dense>  
       <v-list-item link @click="triggerDialog">
