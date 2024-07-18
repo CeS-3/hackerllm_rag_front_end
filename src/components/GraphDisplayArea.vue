@@ -8,12 +8,14 @@
               <v-divider></v-divider>
                   <v-row>
                     <v-col cols="12" md="4" offset="10">
-                        <div style="height: 1em;"></div>
+                        <div style="height: 10px;"></div>
                     </v-col>
-                  </v-row>
+                  <v-col cols="11">
                   <p class="article">
-                  We strive to provide the best service possible with every contact. Our team is dedicated to making sure you have the best experience with our services.
+                    This part analyzes the performance and strategies of the top 800 hackers based on data from machine usage, challenge completion, and sherlock completion. The data was filtered to exclude records with below-average completion rates. Descriptive statistics and principal component analysis (PCA) were used to identify key technologies and challenges. It recommends focusing on technologies like Reconnaissance and Password Cracking and prioritizing challenges such as Web, Crypto, and Reversing. It also highlights the importance of Linux and Windows knowledge due to their high attack rates. Correlation and clustering analyses suggest prioritizing related challenge and sherlock types to maximize learning efficiency. A moderate positive correlation between individual and team rankings indicates that better individual performance aligns with higher team success.
                   </p>
+                </v-col>
+                </v-row>
           </v-col>
         </v-row>
         <v-row>
@@ -32,7 +34,7 @@
           </v-col>
           <v-col cols="5">
             <p class="article">
-              <br>待定
+              <br>
 
             </p>
           </v-col>
@@ -41,7 +43,7 @@
           <v-col cols="6" offset="1">
             <BarChart :categories="MachineMeanBarCategories" :data="MachineMeanBarChartData" :title="MachineAttackPaths" />
           </v-col>
-          <v-col cols="5">
+          <v-col cols="4">
             <p class="article">
                 <br>Analysis<br>
 Considering the total frequency (count) of each technique's appearance among the top 800 individuals and the average completion number (mean), a principal component analysis (PCA) was conducted based on count and mean. <br>
@@ -54,7 +56,7 @@ The visualization results sorted in descending order by the principal component 
           <v-col cols="6" offset="1">
             <RadarChart :indicator="MachineRadarIndicator" :data="MachineRadarData" />
           </v-col>
-          <v-col cols="5">
+          <v-col cols="4">
             <p class="article">
                 <br>
                 Conclusion<br>
@@ -91,14 +93,10 @@ The visualization results sorted in descending order by the principal component 
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="6" offset="1">
+          <v-col cols="10" offset="1">
             <p class="article">
-              <br>this is the analysis
-            </p>
-          </v-col>
-          <v-col cols="5">
-            <p class="article">
-              <br>this is the analysis
+              <br>
+              Conclusion based on the average completion numbers: <br>The recommended order for completing challenges is Web, Crypto, Reversing, Misc, Forensics, Pwn, Hardware, Mobile, GamePwn, OSINT, Blockchain, and AI - ML.
             </p>
           </v-col>
         </v-row>
@@ -121,16 +119,12 @@ The visualization results sorted in descending order by the principal component 
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="6" offset="1">
+          <v-col cols="10" offset="1">
             <p class="article">
-              <br>this is the analysis
+              <br>Conclusion based on the average completion numbers:<br> The recommended order for completing sherlocks is DFIR, SOC, Malware Analysis, Campaign, Cloud, and Threat Intelligence.
             </p>
           </v-col>
-          <v-col cols="5">
-            <p class="article">
-              <br>this is the analysis
-            </p>
-          </v-col>
+
         </v-row>
         <v-row>
           <v-col>
@@ -148,7 +142,19 @@ The visualization results sorted in descending order by the principal component 
           </v-col>
           <v-col cols="5">
             <p class="article">
-              <br>this is the analysis
+              <br>Conclusion: The top 800 hackers typically target Linux and Windows systems. It is recommended to study knowledge related to Linux and Windows systems.
+
+The average number of attacks for each system is as follows:
+                <ol>
+                  <li>Linux: 64.11</li>
+                  <li>Windows: 24.38</li>
+                  <li>Other: 0.78</li>
+                  <li>FreeBSD: 0.51</li>
+                  <li>OpenBSD: 0.49</li>
+                  <li>Android: 0.32</li>
+                  <li>Solaris: 0.16</li>
+                </ol>
+
             </p>
           </v-col>
         </v-row>
@@ -168,8 +174,19 @@ The visualization results sorted in descending order by the principal component 
           </v-col>          
         </v-row>
         <v-row>
-          <v-col offset="2">
-            <p class="article">this is the analysis</p>
+          <v-col cols="10" offset="1">
+            <p class="article">The challenge types Reversing, Crypto, Pwn, Web, Misc, Forensics, Mobile, Hardware, and GamePwn exhibit a strong correlation. These challenges likely assess similar abilities and require similar skills and knowledge, meaning that completing one of these challenges can aid in completing the others.
+
+The challenge type OSINT shows a weak correlation with other challenges. This type may involve a completely different field or skill set, so completing OSINT provides limited assistance in completing other challenges.
+
+Conclusion: It is advisable to prioritize challenges with strong correlations: Web, Crypto, Reversing, Misc, Forensics, Pwn, Hardware, Mobile, GamePwn.
+
+
+
+
+
+
+</p>
           </v-col>
         </v-row>
         <v-row>
@@ -188,8 +205,12 @@ The visualization results sorted in descending order by the principal component 
           </v-col>
         </v-row>
         <v-row>
-          <v-col offset="2">
-            <p class="article">this is the analysis</p>
+          <v-col cols="10" offset="1">
+            <p class="article">The sherlock types DFIR, Cloud, Malware Analysis, Threat Intelligence, and Campaign exhibit a strong correlation. These sherlocks likely assess similar abilities and require similar skills and knowledge, meaning that completing one of these sherlocks can aid in completing the others.
+
+The sherlock type SOC shows a weak correlation with other sherlocks. This type may involve a completely different field or skill set, so completing SOC provides limited assistance in completing other sherlocks.
+
+Conclusion: It is advisable to prioritize sherlocks with strong correlations: DFIR, Malware Analysis, Campaign, Cloud, and Threat Intelligence.</p>
           </v-col>
         </v-row>
         <v-row>
@@ -208,8 +229,8 @@ The visualization results sorted in descending order by the principal component 
           </v-col>
         </v-row>
         <v-row>
-          <v-col offset="2">
-            <p class="article">this is the analysis</p>
+          <v-col  cols="10" offset="1">
+            <p class="article">The correlation coefficient between individual ranking and team ranking is 0.57, indicating a moderate positive correlation between individual ranking and team ranking.</p>
           </v-col>
         </v-row>
     </v-main>

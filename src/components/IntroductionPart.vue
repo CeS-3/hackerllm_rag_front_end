@@ -24,10 +24,13 @@
               <span>Group Member</span>
             </v-btn>
           </v-col>
-        </v-row>
-        <p class="article">
-          We strive to provide the best service possible with every contact. Our team is dedicated to making sure you have the best experience with our services.
+          <v-col cols="11">
+            <p class="article">
+          This project aims to analyze hacker-related data from various websites to uncover the key factors that contribute to becoming an excellent hacker. By extracting and analyzing data from platforms like HackerOne, Hack The Box, and Hack This Site, we seek to provide structured guidance for aspiring hackers. The high entry barriers in the field, including the lack of clear starting points, necessary skills, and effective practice methods, motivate this project. We will utilize advanced data processing techniques such as Principal Component Analysis, Correlation/Cluster Analysis, and Feature Importance Analysis to understand the primary factors influencing hacker rankings. Additionally, we aim to implement a Retrieval-Augmented Generation (RAG) system to generate personalized learning recommendations for beginners. This project also includes the development of a website using FastAPI and Vue.js to facilitate easy access to our findings and recommendations, leveraging the capabilities of Qwen2 for chatbot integration. Ultimately, our goal is to lower the barriers to entry and provide actionable insights and resources for those looking to excel in the cybersecurity domain.
         </p>
+          </v-col>
+        </v-row>
+
         <div style="height: 50px;"></div>
       </v-col>
     </v-row>
