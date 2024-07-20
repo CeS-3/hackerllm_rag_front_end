@@ -176,7 +176,7 @@ export default {
           question: message.data.text
         };
         console.log(request)
-        fetch("http://localhost:3000/api", {
+        fetch("/api", {
           method: 'POST', // 请求方法
           headers: {
             'Content-Type': 'application/json', // 请求头，表示请求体是 JSON 格式
